@@ -1,6 +1,7 @@
 vendor/
 node_modules/
 npm-debug.log
+/.idea
 
 # Laravel 4 specific
 bootstrap/compiled.php
@@ -22,3 +23,8 @@ Homestead.json
 /public/svg
 /storage/
 /public/storage
+mix-manifest.json
+
+public/assets
+resources/assets/admin/scss/
+resources/assets/home/scss/
