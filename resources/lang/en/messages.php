@@ -25,4 +25,5 @@ return [
     'before_proceeding' => 'Before proceeding, please check your email for a verification link.',
     'receive_email' => 'If you did not receive the email',
     'click_here' => 'click here to request another',
+    'error' => 'Error!!!',
 ];

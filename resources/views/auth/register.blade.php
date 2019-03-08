@@ -12,7 +12,7 @@
                 {{ Html::image('/assets/admin/images/logos/logo-icon.png', 'dashboard') }}
                 <h3 class="light-logo text-center">@lang('messages.logo')</h3>
             </a>
-
+            @include('common.errors')
             <div class="form-group">
                 <div class="col-md-12">
                     {!! Form::text('full_name', old('full_name'), ['class' => ['form-control', $errors->has('full_name') ? ' is-invalid' : ''], 'placeholder' => 'Full name', 'required' => 'required', 'id' => 'full_name', 'autofocus' => 'autofocus']) !!}
