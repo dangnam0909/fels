@@ -2,7 +2,7 @@ vendor/
 node_modules/
 npm-debug.log
 /.idea
-
+/.vscode
 # Laravel 4 specific
 bootstrap/compiled.php
 app/storage/
@@ -26,5 +26,6 @@ Homestead.json
 mix-manifest.json
 
 public/assets
+public/js
 resources/assets/admin/scss/
 resources/assets/home/scss/

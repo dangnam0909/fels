@@ -12,6 +12,8 @@
                 <h3 class="light-logo text-center">@lang('messages.logo')</h3>
             </a>
 
+            @include('common.errors')
+
             <div class="form-group ">
                 <div class="col-xs-12">
                     {!! Form::email('email', old('email'), ['class' => ['form-control', $errors->has('email') ? ' is-invalid' : ''], 'placeholder' => 'Email', 'required' => 'required', 'id' => 'email', 'autofocus' => 'autofocus']) !!}

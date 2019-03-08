@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\User;
-use App\Models\Role;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
@@ -11,8 +10,8 @@ class Role extends Model
     protected $fillable = [
         'role_name',
     ];
-    
-    public function  user()
+
+    public function user()
     {
         return $this->hasOne(User::class);
     }

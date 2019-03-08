@@ -8,3 +8,4 @@
 {{ Html::script(asset('/assets/plugins/sparkline/jquery.sparkline.min.js')) }}
 {{ Html::script(asset('/assets/admin/js/custom.min.js')) }}
 {{ Html::script(asset('/assets/plugins/styleswitcher/jQuery.style.switcher.js')) }}
+{{ Html::script(asset('/js/ajaxLogout.js')) }}

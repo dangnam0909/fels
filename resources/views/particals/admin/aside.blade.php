@@ -2,7 +2,7 @@
     <div class="scroll-sidebar">
         <div class="user-profile" style="background: url(../assets/admin/images/backgrounds/dashboard.jpg) no-repeat;">
             <div class="profile-img">
-                {{ Html::image('/assets/admin/images/users/2.jpg', 'user') }}
+                {{ Html::image('/assets/admin/images/users/' . Auth::user()->avatar, Auth::user()->full_name) }}
             </div>
         </div>
 
