@@ -12,5 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
+})->name('index');
+
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
