@@ -23,7 +23,7 @@
             <ul class="navbar-nav my-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ Html::image('/assets/admin/images/users/2.jpg', 'user', ['class' => 'profile-pic']) }}
+                        {{ Html::image('/assets/admin/images/users/' . Auth::user()->avatar, Auth::user()->full_name, ['class' => 'profile-pic']) }}
 
                     </a>
 
@@ -32,17 +32,20 @@
                             <li>
                                 <div class="dw-user-box">
                                     <div class="u-img">
-                                        {{ Html::image('/assets/admin/images/users/2.jpg', 'user') }}
+                                        {{ Html::image('/assets/admin/images/users/' . Auth::user()->avatar, Auth::user()->full_name) }}
 
                                     </div>
                                     <div class="u-text">
-                                        <h4>Huan Le</h4>
-                                        <p class="text-muted">huan@gmail.com</p><a href="#" class="btn btn-rounded btn-danger btn-sm">@lang('messages.view_profile')</a>
+                                        <h4>{{ Auth::user()->full_name }}</h4>
+                                        <p class="text-muted">{{ Auth::user()->email }}</p><a href="#" class="btn btn-rounded btn-danger btn-sm">@lang('messages.view_profile')</a>
                                     </div>
                                 </div>
                             </li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="fa fa-power-off"></i>@lang('messages.logout')</a></li>
+                            <li><a id="logout"><i class="fa fa-power-off"></i>@lang('messages.logout')</a></li>
+                            {!! Form::open(['method' => 'post', 'route' => 'logout', 'id' => 'logout-form']) !!}
+
+                            {!! Form::close() !!}
                         </ul>
                     </div>
                 </li>

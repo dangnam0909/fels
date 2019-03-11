@@ -9,7 +9,7 @@ return [
     'footer' => '© 2019 F. English learning',
     'login' => 'Login',
     'login_facebook' => 'Login with Facebook',
-    'login_google' => 'Login with Facebook',
+    'login_google' => 'Login with Google',
     'email' => 'Email',
     'password' => 'Password',
     'remember_me' => 'Remember me',

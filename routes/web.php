@@ -10,14 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group([
+    'middleware' => ['auth', 'admin'],
+    'namespace' => 'admin',
+], function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard.index');
+    });
+});
 
 Route::get('/', function () {
     return view('home');
 })->name('index');
-
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-});
 
 Auth::routes();
 
