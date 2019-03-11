@@ -6,7 +6,6 @@ use App\Models\History;
 use App\Models\Lesson;
 use App\Models\Test;
 use App\Models\Word;
-use App\Models\UserTopic;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -51,9 +50,9 @@ class User extends Authenticatable
         return $this->hasMany(History::class);
     }
 
-    public function userTopics()
+    public function topics()
     {
-        return $this->hasMany(UserTopic::class);
+        return $this->belongsToMany(Topic::class, 'user_topic', 'user_id', 'topic_id')->withTimestamps();
     }
 
     public function isRoleAdmin()

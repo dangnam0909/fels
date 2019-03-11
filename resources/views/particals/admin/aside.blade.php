@@ -9,7 +9,10 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li>
-                    <a href="#" aria-expanded="false"><i class="fa fa-circle"></i><span class="hide-menu">@lang('messages.dashboard')</span></a>
+                    <a href="{{ route('dashboard') }}" aria-expanded="false"><i class="fa fa-dashboard"></i><span class="hide-menu">@lang('messages.dashboard')</span></a>
+                </li>
+                <li>
+                    <a href="#" aria-expanded="false"><i class="fa fa-briefcase"></i><span class="hide-menu">@lang('messages.topic')</span></a>
                 </li>
             </ul>
         </nav>

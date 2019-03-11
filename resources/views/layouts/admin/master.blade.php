@@ -34,8 +34,20 @@
                     <div class="col-md-5 col-8 align-self-center">
                         <h3 class="text-themecolor m-b-0 m-t-0">@lang('messages.dashboard')</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">@lang('messages.home')</a></li>
+
+                            @for ($i = 2; $i <= count(Request::segments()); $i++)
+                                @if ($i < count(Request::segments()) & $i > 0)
+                                    <li class="breadcrumb-item">
+                                        <a href="{{ url('admin/'.Request::segment($i)) }}">{{ ucwords(str_replace('-',' ',Request::segment($i))) }}</a>
+                                    </li>
+                                @else
+                                    <li class="breadcrumb-item">
+                                        {{ucwords(str_replace('-',' ',Request::segment($i)))}}
+                                    </li>
+                                @endif
+                            @endfor
+
                         </ol>
                     </div>
                 </div>
