@@ -3,14 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Lesson;
-use App\Models\UserTopic;
+use Request;
 
 class Topic extends Model
 {
     protected $fillable = [
         'topic_name',
-        'discription',
+        'description',
         'picture',
     ];
 
@@ -19,8 +18,23 @@ class Topic extends Model
         return $this->hasMany(Lesson::class);
     }
 
-    public function userTopics()
+    public function users()
     {
-        return $this->hasMany(UserTopic::class);
+        return $this->belongsToMany(User::class, 'user_topic', 'topic_id', 'user_id')->withTimestamps();
+    }
+
+    public static function uploadImage($field)
+    {
+        if (Request::hasFile($field))
+        {
+            $pic = Request::file($field);
+            if ($pic->isValid())
+            {
+                $newName = md5(rand(1, 1000) . $pic->getClientOriginalName()) . "." . $pic->getClientOriginalExtension();
+                $pic->move('uploads/topics', $newName);
+                return $newName;
+            }
+        }
+        return '';
     }
 }

@@ -26,4 +26,7 @@ return [
     'receive_email' => 'If you did not receive the email',
     'click_here' => 'click here to request another',
     'error' => 'Error!!!',
+    'topic' => 'Management Topics',
+    'success' => 'Create a :name successfully!',
+    'error' => 'Create a :name failed!'
 ];

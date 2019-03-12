@@ -12,11 +12,13 @@
 */
 Route::group([
     'middleware' => ['auth', 'admin'],
-    'namespace' => 'admin',
+    'prefix' => 'admin',
 ], function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index');
-    });
+    })->name('dashboard');
+
+    Route::resource('/topics', 'Admin\TopicController');
 });
 
 Route::get('/', function () {
