@@ -28,5 +28,6 @@ return [
     'error' => 'Error!!!',
     'topic' => 'Management Topics',
     'success' => 'Create a :name successfully!',
-    'error' => 'Create a :name failed!'
+    'error' => 'Create a :name failed!',
+    'nothing' => 'Nothing!',
 ];

@@ -37,4 +37,21 @@ class Topic extends Model
         }
         return '';
     }
+
+    /**
+     * Get the picture topic and return the default picture topic if the picture is null.
+     *
+     * @param string $value
+     * @return string
+     */
+    public function getPictureAttribute($value)
+    {
+        return isset($value) ? $value : config('setting.topic_image_default');
+    }
+
+    public function getCreatedAtAttribute()
+    {
+        return date('m-d-Y H:m:s', strtotime($this->attributes['created_at']));
+    }
+
 }
