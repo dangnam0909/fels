@@ -25,6 +25,12 @@ Route::get('/', function () {
     return view('home');
 })->name('index');
 
+Route::group([
+    'middleware' => ['auth'],
+], function () {
+    Route::resource('word', 'Home\WordListController');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -6,4 +6,7 @@ return [
     'topic' => [
         'number_page' => 12,
     ],
+    'word' => [
+		'number_page' => 10,
+	],
 ];

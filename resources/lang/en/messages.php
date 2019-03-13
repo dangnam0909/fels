@@ -30,4 +30,9 @@ return [
     'success' => 'Create a :name successfully!',
     'error' => 'Create a :name failed!',
     'nothing' => 'Nothing!',
+    'sp_trans' => 'translation',
+    'sp_spell' => 'spelling',
+    'list_word_followed' => 'List of vocabulary being tracked',
+    'word_title' => 'List of vocabulary',
+    'btn_test' => 'Test word',
 ];
