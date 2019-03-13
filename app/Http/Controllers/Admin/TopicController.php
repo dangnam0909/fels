@@ -17,7 +17,8 @@ class TopicController extends Controller
      */
     public function index()
     {
-        //
+        $topics = Topic::latest()->paginate(config('setting.topic.number_page'));
+        return view('dashboard.topics.index', compact('topics'));
     }
 
     /**
