@@ -11,11 +11,6 @@ class LessonTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('lessons')->insert([
-            'lesson_name' => 'Bài 1',
-            'picture' => 'information.jpeg',
-            'description' => 'Từ vựng về phần mềm',
-            'topic_id' => '1',
-        ]);
+        factory(\App\Models\Lesson::class, 400)->create();
     }
 }

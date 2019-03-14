@@ -11,6 +11,7 @@ class Topic extends Model
         'topic_name',
         'description',
         'picture',
+        'slug',
     ];
 
     public function lessons()
