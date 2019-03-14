@@ -16,4 +16,9 @@ return [
     'add_topic' => 'Add Topic',
     'created_at' => 'Created at',
     'search' => 'Search',
+    'see_topic' => 'See Topic',
+    'lessons' => 'Lessons',
+    'free_english' => 'Free Online English Courses',
+    'free_text' => 'Your free Online English Course is ready for you now. Choose your English course level from the list below and start learning online today.',
+    'nothing' => 'Nothing!',
 ];

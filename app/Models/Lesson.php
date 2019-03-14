@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Lesson;
 use App\Models\Topic;
 use App\Models\Word;
 use App\Models\Test;

@@ -21,13 +21,10 @@ Route::group([
     Route::resource('/topics', 'Admin\TopicController');
 });
 
-Route::get('/', function () {
-    return view('home');
-})->name('index');
-
 Route::group([
     'middleware' => ['auth'],
 ], function () {
+    Route::get('/', 'Home\TopicController@index')->name('index');
     Route::resource('word', 'Home\WordListController');
 });
 
