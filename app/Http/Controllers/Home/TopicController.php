@@ -64,9 +64,16 @@ class TopicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        try {
+            $topic = Topic::where('slug', $slug)->firstOrFail();
+            $lessons = Lesson::where('topic_id', $topic->id)->get();
+
+            return view('topics.show', compact('lessons'));
+        } catch (ModelNotFoundException $e) {
+            return view('errors.404');
+        }
     }
 
     /**
