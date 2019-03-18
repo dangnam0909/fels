@@ -35,4 +35,9 @@ class Lesson extends Model
     {
         return $this->hasMany(Test::class);
     }
+
+    public function getCreatedAtAttribute()
+    {
+        return  date('M d , Y', strtotime($this->attributes['created_at']));
+    }
 }
