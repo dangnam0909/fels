@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Topic;
 use App\Models\Lesson;
+<<<<<<< HEAD
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+=======
+>>>>>>> show
 
 class TopicController extends Controller
 {
@@ -50,6 +53,7 @@ class TopicController extends Controller
      */
     public function show($slug)
     {
+<<<<<<< HEAD
         try {
             $topic = Topic::where('slug', $slug)->firstOrFail();
             $lessons = Lesson::where('topic_id', $topic->id)->get();
@@ -74,6 +78,11 @@ class TopicController extends Controller
         } catch (ModelNotFoundException $e) {
             return view('errors.404');
         }
+=======
+        $topic = Topic::where('slug', $slug)->firstOrFail();
+        $lessons = Lesson::where('topic_id', $topic->id)->get();
+        return view('topics.show', compact('lessons'));
+>>>>>>> show
     }
 
     /**
