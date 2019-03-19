@@ -35,4 +35,11 @@ return [
     'list_word_followed' => 'List of vocabulary being tracked',
     'word_title' => 'List of vocabulary',
     'btn_test' => 'Test word',
+    'public' => 'Public',
+    'test_question' => 'Test Question',
+    'results' => 'Results',
+    'show_lessons' => 'Show Lesson',
+    'not_found_error' => 'Not Found!',
+    'back' => 'Back to home',
+    'try_find_home' => 'YOU SEEM TO BE TRYING TO FIND HIS WAY HOME',
 ];

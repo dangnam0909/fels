@@ -3,3 +3,7 @@ img.card-img-left {
     height: 15vw;
     object-fit: cover;
 }
+
+.round img {
+    width: 50px;
+}
