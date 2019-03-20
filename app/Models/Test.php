@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\User;
-use App\Models\Test;
 use App\Models\Result;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +10,7 @@ class Test extends Model
 {
     protected $fillable = [
         'test_name',
-        'lesson_id',	
+        'lesson_id',
         'time',
     ];
 
@@ -25,7 +24,7 @@ class Test extends Model
         return $this->belongsTo(Lesson::class);
     }
 
-    public function question()
+    public function questions()
     {
         return $this->hasMany(Question::class);
     }

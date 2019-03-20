@@ -8,5 +8,6 @@ return [
     ],
     'word' => [
 		'number_page' => 10,
-	],
+    ],
+    'question_number' => 10,
 ];
