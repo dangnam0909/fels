@@ -31,6 +31,10 @@ Route::group([
     Route::resource('word', 'Home\WordListController');
     Route::resource('/lessons/tests', 'Home\TestController')->only(['show', 'store']);
     Route::resource('showtests', 'Home\ShowTestController');
+
+    Route::group(['prefix' => 'user'], function () {
+        Route::resource('/profile', 'Home\UserController');
+    });
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

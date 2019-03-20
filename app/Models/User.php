@@ -9,6 +9,7 @@ use App\Models\Word;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Lang;
 
 class User extends Authenticatable
 {
@@ -17,7 +18,7 @@ class User extends Authenticatable
         'password',
         'email',
         'gender',
-        'date_of_birth',
+        'date_of_birthday',
         'avatar',
         'provider_user_id',
         'provider',
@@ -58,5 +59,15 @@ class User extends Authenticatable
     public function isRoleAdmin()
     {
         return $this->role()->where('id', config('setting.role_ad'))->exists();
+    }
+
+    public function getGenderAttribute($value)
+    {
+        return $value == config('setting.male') ? Lang::get('profile.male') : Lang::get('profile.female');
+    }
+
+    public function getAvatarAttribute($value)
+    {
+        return isset($value) ? $value : config('setting.default_avatar');
     }
 }
