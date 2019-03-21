@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Home;
 
-use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TopicRequest;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Test;
+use App\Models\Lesson;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class TopicController extends Controller
+class ShowTestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        return view('dashboard.topics.index', compact('topics'));
+        //
     }
 
     /**
@@ -27,36 +27,18 @@ class TopicController extends Controller
      */
     public function create()
     {
-        return view('dashboard.topics.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\TopicRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TopicRequest $request)
+    public function store(Request $request)
     {
-        try {
-
-            $data = [
-                'topic_name' => $request->topic_name,
-                'description' => $request->description,
-                'picture' => Topic::uploadImage('picture'),
-            ];
-
-            $topic = new Topic;
-            $topic->fill($data);
-            $topic->save();
-
-            $userId = Auth::user()->id;
-            $topic->users()->attach($userId);
-            return redirect()->route('topics.index')->with('status', trans('success', ['name' => 'topic']));
-
-        } catch (Exception $e) {
-            return back()->with('errors', trans('error', ['name' => 'topic']));
-        }
+        //
     }
 
     /**
@@ -67,7 +49,15 @@ class TopicController extends Controller
      */
     public function show($id)
     {
-        //
+
+        try {
+            $lessons = Lesson::where('id', $id)->firstOrFail();
+            $tests = Test::where('lesson_id', $lessons->id)->get();
+
+            return view('showtests.show', compact('tests', 'lessons'));
+        } catch (ModelNotFoundException $e) {
+            return view('errors.404');
+        }
     }
 
     /**
