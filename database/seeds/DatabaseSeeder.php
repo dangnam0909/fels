@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(HistoryTableSeeder::class);
         $this->call(QuestionTableSeeder::class);
         $this->call(ResultTableSeeder::class);
+        $this->call(TopicsTableSeeder::class);
     }
 }

@@ -1,5 +1,8 @@
 <?php
+
 use Illuminate\Database\Seeder;
+use App\Models\Test;
+
 class TestTableSeeder extends Seeder
 {
     /**
@@ -9,10 +12,6 @@ class TestTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tests')->insert([
-            'test_name' => 'dang nam',
-            'lesson_id' => '1',
-            'time' => Carbon\Carbon::now(),
-        ]);
+        factory(Test::class, 100)->create();
     }
 }

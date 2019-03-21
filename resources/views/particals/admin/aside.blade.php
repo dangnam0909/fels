@@ -13,6 +13,7 @@
                 </li>
                 <li>
                     <a href="{{ route('topics.index') }}" aria-expanded="false"><i class="fa fa-briefcase"></i><span class="hide-menu">@lang('messages.topic')</span></a>
+                    <a href="#" aria-expanded="false"><i class="fa fa-briefcase"></i><span class="  hide-menu">@lang('messages.topic')</span></a>
                 </li>
             </ul>
         </nav>
