@@ -4,19 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Test;
-use App\Models\Question;
 
 class Question extends Model
 {
     protected $fillable = [
         'question_type',
         'constent',
-        'option',
-        'is_correct',
+        'test_id',
     ];
 
     public function test()
     {
-        return $this->belongsTo(Tets::class);
+        return $this->belongsTo(Test::class);
+    }
+
+    public function options()
+    {
+        return $this->hasMany(Option::class);
     }
 }

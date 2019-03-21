@@ -7,3 +7,9 @@ img.card-img-left {
 .round img {
     width: 50px;
 }
+
+.fixed {
+    position: fixed;
+    display: flex;
+    justify-content: flex-end;
+}
