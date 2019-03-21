@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Word;
 
 class WordTableSeeder extends Seeder
 {
@@ -11,13 +12,6 @@ class WordTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('words')->insert([
-            'word_name' => 'information',
-            'picture' => 'information.jpeg',
-            'sound' => 'information.mp3',
-            'translate' => 'thông tin',
-            'lesson_id' => '1',
-            'user_id' => '1',
-        ]);
+        factory(Word::class, 400)->create();
     }
 }
