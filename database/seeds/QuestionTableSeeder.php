@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Question;
 
 class QuestionTableSeeder extends Seeder
 {
@@ -11,12 +12,6 @@ class QuestionTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('questions')->insert([
-            'test_id' => '1',
-            'question_type' => 'Test word of vocalory',
-            'constent' => 'Test word',
-            'option' => '1',
-            'is_correct' => true,
-        ]);
+        factory(Question::class, 100)->create();
     }
 }

@@ -16,7 +16,6 @@ class WordTableSeeder extends Seeder
             'picture' => 'information.jpeg',
             'sound' => 'information.mp3',
             'translate' => 'thông tin',
-            'status' => '0',
             'lesson_id' => '1',
             'user_id' => '1',
         ]);

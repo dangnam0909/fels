@@ -38,7 +38,7 @@ class User extends Authenticatable
 
     public function words()
     {
-        return $this->hasMany(Word::class);
+        return $this->belongsToMany(Word::class, 'memories', 'user_id', 'word_id');
     }
 
     public function tests()

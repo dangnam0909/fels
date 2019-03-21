@@ -28,7 +28,7 @@ Route::group([
 ], function () {
     Route::get('/', 'Home\TopicController@index')->name('index');
     Route::get('/{slug}', 'Home\TopicController@show')->name('topics.show');
-    Route::resource('word', 'Home\WordListController');
+    Route::resource('index/word', 'Home\WordListController');
     Route::resource('/lessons/tests', 'Home\TestController')->only(['show', 'store']);
     Route::resource('showtests', 'Home\ShowTestController');
 
