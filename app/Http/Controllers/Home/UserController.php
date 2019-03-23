@@ -98,4 +98,23 @@ class UserController extends Controller
     {
         //
     }
+
+    /**
+     * Display the following users list.
+     *
+     * @param string $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function following($id)
+    {
+        $user = User::query()->where('id', $id)->first();
+
+        if(!isset($user))
+            return view('errors.404');
+
+        $followings = $user->followings()->get();
+
+        return view('users.following', compact('followings'));
+    }
 }

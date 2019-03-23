@@ -14,4 +14,5 @@ return [
     'male' => 'Male',
     'female' => 'Female',
     'date_of_birthday' => 'Birthday',
+    'list_user' => 'List users you follow',
 ];
