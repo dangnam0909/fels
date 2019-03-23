@@ -15,4 +15,6 @@ return [
     'female' => 'Female',
     'date_of_birthday' => 'Birthday',
     'list_user' => 'List users you follow',
+    'update_success' => 'Update successfully!',
+    'update_error' => 'Update Failed!',
 ];

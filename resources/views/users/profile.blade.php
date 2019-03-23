@@ -1,9 +1,16 @@
 @extends('layouts.home.master')
 
 @section('content')
-<div class="row">
-    <!-- Column -->
-    <div class="col-lg-4 col-xlg-3 col-md-5">
+
+@can('update', $user)
+    <div class="row">
+        <div class="col-lg-4 col-xlg-3 col-md-5">
+@endcan
+
+@cannot('update', $user)
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-xlg-12 col-md-12">
+@endcannot
         <div class="card">
             {{ Html::image('assets/admin/images/backgrounds/dashboard.jpg', $user->full_name) }}
 
@@ -40,66 +47,74 @@
             </div>
         </div>
     </div>
-
-    <div class="col-lg-8 col-xlg-9 col-md-7">
-        <div class="card">
-            <ul class="nav nav-tabs profile-tab" role="tablist">
-                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#settings" role="tab">@lang('profile.setting')</a> </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane active" id="settings" role="tabpanel">
-                    <div class="card-body">
-                        {!! Form::open(['route' => ['profile.update', $user->id], 'method' => 'PUT', 'class' => 'form-horizontal form-material']) !!}
-
-                            <div class="form-group">
-                                {!! Form::label('full_name', trans('profile.full_name', ['class' => 'col-md-12'])) !!}
-
-                                <div class="col-md-12">
-                                    {!! Form::text('name', $user->full_name, ['class' => 'form-control form-control-line']) !!}
-
-                                </div>
+    @can('update', $user)
+        <div class="col-lg-8 col-xlg-9 col-md-7">
+            <div class="card">
+                <ul class="nav nav-tabs profile-tab" role="tablist">
+                    <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#settings" role="tab">@lang('profile.setting')</a> </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="settings" role="tabpanel">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
                             </div>
+                        @endif
 
-                            <div class="form-group">
-                                {!! Form::label('email', trans('profile.email', ['class' => 'col-md-12'])) !!}
+                        @include('common.errors')
+                        <div class="card-body">
+                            {!! Form::open(['route' => ['profile.update', $user->id], 'method' => 'PUT', 'class' => 'form-horizontal form-material']) !!}
 
-                                <div class="col-md-12">
-                                    {!! Form::text('email', $user->email, ['class' => 'form-control form-control-line']) !!}
+                                <div class="form-group">
+                                    {!! Form::label('full_name', trans('profile.full_name', ['class' => 'col-md-12'])) !!}
 
-                                </div>
-                            </div>
+                                    <div class="col-md-12">
+                                        {!! Form::text('full_name', $user->full_name, ['class' => 'form-control form-control-line']) !!}
 
-                            <div class="form-group">
-                                {!! Form::label('gender', trans('profile.gender', ['class' => 'col-md-12'])) !!}
-
-                                <div class="col-md-12">
-                                    {!! Form::radio('gender', config('setting.male'), $user->gender == trans('profile.male'), ['id' => config('setting.male')]) !!}
-                                    {!! Form::label(config('setting.male'), trans('profile.male')) !!}
-
-                                    {!! Form::radio('gender', config('setting.female'), $user->gender == trans('profile.female'), ['id' => config('setting.female')]) !!}
-                                    {!! Form::label(config('setting.female'), trans('profile.female')) !!}
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                {!! Form::label('date_of_birthday', trans('profile.date_of_birthday', ['class' => 'col-2 col-form-label'])) !!}
-
-                                <div class="col-12">
-                                    {!! Form::date('date_of_birthday', $user->date_of_birthday, ['class' => 'form-control form-control-line']) !!}
-
+                                    </div>
                                 </div>
 
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    {{ Form::submit(trans('profile.update_profile'), ['class'=>'btn btn-success'])}}
+                                <div class="form-group">
+                                    {!! Form::label('email', trans('profile.email', ['class' => 'col-md-12'])) !!}
+
+                                    <div class="col-md-12">
+                                        {!! Form::text('email', $user->email, ['class' => 'form-control form-control-line', 'disabled' => 'disabled']) !!}
+
+                                    </div>
                                 </div>
-                            </div>
-                        {!! Form::close() !!}
+
+                                <div class="form-group">
+                                    {{ $user->gender }} awef
+
+                                    <div class="col-md-12">
+                                        {!! Form::radio('gender', trans('profile.male'), $user->gender == trans('profile.male'), ['id' => config('setting.male')]) !!}
+                                        {!! Form::label(config('setting.male'), trans('profile.male')) !!}
+
+                                        {!! Form::radio('gender', trans('profile.female'), $user->gender == trans('profile.female'), ['id' => config('setting.female')]) !!}
+                                        {!! Form::label(config('setting.female'), trans('profile.female')) !!}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    {!! Form::label('date_of_birthday', trans('profile.date_of_birthday', ['class' => 'col-2 col-form-label'])) !!}
+
+                                    <div class="col-12">
+                                        {!! Form::date('date_of_birthday', $user->date_of_birthday, ['class' => 'form-control form-control-line']) !!}
+
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        {{ Form::submit(trans('profile.update_profile'), ['class'=>'btn btn-success'])}}
+                                    </div>
+                                </div>
+                            {!! Form::close() !!}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endcan
 </div>
 @endsection

@@ -61,11 +61,6 @@ class User extends Authenticatable
         return $this->role()->where('id', config('setting.role_ad'))->exists();
     }
 
-    public function getGenderAttribute($value)
-    {
-        return $value == config('setting.male') ? Lang::get('profile.male') : Lang::get('profile.female');
-    }
-
     public function getAvatarAttribute($value)
     {
         return isset($value) ? $value : config('setting.default_avatar');
