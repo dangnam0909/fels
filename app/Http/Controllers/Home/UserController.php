@@ -85,7 +85,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $input = $request->except(['email', 'role_id']);
+            $user = User::query()->findOrFail($id);
+            $this->authorize('update', $user);
+            $user->update($input);
+
+            return redirect()->back()->with('status', trans('profile.update_success'));
+        } catch (ModelNotFoundException $e) {
+
+            return redirect()->back()->with('status', trans('profile.update_error'));
+        }
     }
 
     /**
