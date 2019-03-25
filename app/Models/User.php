@@ -3,16 +3,16 @@
 namespace App\Models;
 
 use App\Models\History;
-use App\Models\Lesson;
 use App\Models\Test;
 use App\Models\Word;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Lang;
+use App\Traits\FollowTrait;
 
 class User extends Authenticatable
 {
+    use FollowTrait;
+
     protected $fillable = [
         'full_name',
         'password',

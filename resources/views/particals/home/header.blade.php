@@ -2,7 +2,7 @@
     <nav class="navbar top-navbar navbar-expand-md navbar-light">
 
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route('index') }}">
                 <b>
                     {{ Html::image('/assets/home/images/logos/logo-icon.png', 'home page', ['class' => 'dark-logo']) }}
                     {{ Html::image('/assets/home/images/logos/logo-light-icon.png', 'home page', ['class' => 'light-logo']) }}
@@ -25,20 +25,20 @@
                     @auth
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ Html::image('/assets/admin/images/users/' . Auth::user()->avatar, Auth::user()->full_name, ['class' => 'profile-pic']) }}
+                                {{ Html::image('/uploads/users/' . Auth::user()->avatar, Auth::user()->full_name, ['class' => 'profile-pic']) }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right scale-up">
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
                                             <div class="u-img">
-                                                {{ Html::image('/assets/home/images/users/' . Auth::user()->avatar, Auth::user()->full_name) }}
+                                                {{ Html::image('/uploads/users/' . Auth::user()->avatar, Auth::user()->full_name) }}
 
                                             </div>
                                             <div class="u-text">
                                                 <h4>{{ Auth::user()->full_name }}</h4>
                                                 <p class="text-muted"> {{ Auth::user()->email }} </p>
-                                                <a href="#" class="btn btn-rounded btn-danger btn-sm">@lang('messages.view_profile')</a>
+                                                <a href="{{ route('profile.show', Auth::user()->id) }}" class="btn btn-rounded btn-danger btn-sm">@lang('messages.view_profile')</a>
                                             </div>
                                         </div>
                                     </li>

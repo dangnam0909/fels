@@ -14,13 +14,27 @@
                 </div>
                 <h3 class="m-b-0">{{ $user->full_name }}</h3>
                 <p>{{ $user->gender }}</p>
-                <p><small>{{ $user->email }}</small></p> <a href="javascript:void(0)" class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded">@lang('profile.follow')</a>
+                <p>
+                    <small>{{ $user->email }}</small>
+                </p>
+                @if (Auth::check())
+                    @if (Auth::id() != $user->id)
+                        <a href="javascript:void(0)" class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded">
+                            @lang('profile.follow')
+                        </a>
+                    @endif
+                @endif
+
                 <div class="row text-center m-t-20">
                     <div class="col-lg-6 col-md-4 m-t-20">
                         <h3 class="m-b-0 font-light"></h3><small>@lang('profile.followers')</small>
                     </div>
                     <div class="col-lg-6 col-md-4 m-t-20">
-                        <h3 class="m-b-0 font-light"></h3><small>@lang('profile.following')</small></div>
+                        <a href="{{ route('user.following', $user->id) }}">
+                            <h3 class="m-b-0 font-light">{{ $user->followings()->count() }}</h3>
+                            <small>@lang('profile.following')</small>
+                        </a>
+                    </div>
                     <div class="col-md-12 m-b-10"></div>
                 </div>
             </div>
