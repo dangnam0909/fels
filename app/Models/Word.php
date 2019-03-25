@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\User;
+use App\Models\Memory;
 use App\Models\Lesson;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Word extends Model
@@ -13,14 +14,12 @@ class Word extends Model
     	'picture',
     	'sound',
     	'translate',
-        'user_id',
         'lesson_id',
-        'status',
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class, 'memories', 'word_id', 'user_id');
     }
 
     public function lesson()

@@ -1,10 +1,10 @@
-r<?php
+<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DropColumnsInQuestionTable extends Migration
+class DropColumnsInWordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class DropColumnsInQuestionTable extends Migration
      */
     public function up()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->dropColumn('option');
-            $table->dropColumn('is_correct');
+        Schema::table('words', function (Blueprint $table) {
+            $table->dropColumn('status');
         });
     }
 
@@ -26,9 +25,8 @@ class DropColumnsInQuestionTable extends Migration
      */
     public function down()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->string('option');
-            $table->boolean('is_correct');
+        Schema::table('words', function (Blueprint $table) {
+            $table->tinyInteger('status');
         });
     }
 }
