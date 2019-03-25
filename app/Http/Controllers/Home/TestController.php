@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Test;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use DB;
-use Session;
+use Auth;
+use App\Models\Result;
+use Carbon\Carbon;
 
 class TestController extends Controller
 {
@@ -39,7 +41,30 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $questions = $request->input('questions.*');
+        $test = Test::find($request->input('test_id'));
+        $score = 0;
+        $options = [];
+
+        foreach ($questions as $key => $question)
+        {
+            $options[$key] = $request->input('answers.'. $question) != null ? $request->input('answers.'. $question) : null;
+        }
+
+        $results = DB::table('options')->whereIn('id', $options)->get();
+        foreach ($results as $result)
+        {
+            $score = $result->is_correct == 1 ? $score + 1 : $score;
+        }
+
+        $result = Result::create([
+            'finish_time' => Carbon::now()->format('H:m:i'),
+            'user_id' => Auth::user()->id,
+            'test_id'=> $test->id,
+            'score' => $score,
+        ]);
+
+        return view('tests.result', compact('result', 'test'));
     }
 
     /**

@@ -17,7 +17,7 @@ function timer() {
     count--;
     if (count < 0) {
         alert("Het gio");
-        window.location.href = 'https://google.com';
+        window.location.href = "{{ route('tests.store') }}";
     }
     document.getElementById('timer').innerHTML = formatTime(count);
 }

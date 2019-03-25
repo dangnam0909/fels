@@ -11,6 +11,7 @@
             <div class="card">
                 <div class="card-body">
                     {!! Form::open(['route' => 'tests.store', 'method' => 'POST']) !!}
+                        {!! Form::hidden('test_id', $test->id) !!}
                         <div class="row d-flex flex-row-reverse">
                             <div class="col-md-6 fixed">
                                 <div class="alert alert-info" id="timer">{{ $test->time }}</div>
@@ -20,7 +21,6 @@
                         @foreach ($questions as $key => $question)
                             <h4 class="card-title" id="{{ $key }}">{{ ($key + 1) }}. {{ $question->constent }}</h4>
                             {!! Form::hidden("questions[$question->id]", $question->id) !!}
-                            {!! Form::input('hidden', 'time_taken'.$question->id,null, ['id' => 'time_taken'.$question->id]) !!}
 
                             @foreach ($question->options as $option)
                                 <div class="col-sm-4">
@@ -33,7 +33,7 @@
                             @endforeach
                         @endforeach
 
-                        {{ Form::button(trans('messages.finish'), ['class'=>'btn btn-danger btn-lg btn-block text-uppercase waves-effect waves-light', 'type'=>'submit'])}}
+                        {{ Form::submit(trans('messages.finish'), ['class'=>'btn btn-danger btn-lg btn-block text-uppercase'])}}
 
                     {!! Form::close() !!}
                 </div>

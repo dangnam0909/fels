@@ -15,14 +15,14 @@
                         </span>
                     </div>
                     <div class="comment-text w-100">
-                        <a href=""><h5>{{ $lesson->lesson_name }}</h5></a>
+                        <a href="{{ route('showtests.show', $lesson->id) }}"><h5>{{ $lesson->lesson_name }}</h5></a>
                         <p class="m-b-5">
                             {{ $lesson->description }}
                         </p>
                         <div class="comment-footer">
                             <span class="text-muted pull-right">{{ $lesson->created_at }}</span>
                             <span class="action-icons">
-                                <a href="javascript:void(0)"><i data-toggle="tooltip" data-original-title="{{ trans('messages.test_question') }}" class="ti-pencil-alt"></i></a>
+                                <a href="{{ route('showtests.show', $lesson->id) }}"><i data-toggle="tooltip" data-original-title="{{ trans('messages.test_question') }}" class="ti-pencil-alt"></i></a>
                                 <a href="javascript:void(0)"><i data-toggle="tooltip" data-original-title="{{ trans('messages.results') }}" class="ti-check"></i></a>
                             </span>
                         </div>
