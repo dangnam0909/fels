@@ -26,15 +26,22 @@
                 </p>
                 @if (Auth::check())
                     @if (Auth::id() != $user->id)
-                        <a href="javascript:void(0)" class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded">
-                            @lang('profile.follow')
+                        <a href="javascript:void(0)" id="follow-form" data-id="{{ $user->id }}" class="m-t-10 waves-effect waves-dark btn btn-{{ Auth::user()->isFollowing($user->id) ? 'primary' : 'danger' }} btn-md btn-rounded">
+                            {{ Auth::user()->isFollowing($user->id) ? trans('profile.following') : trans('profile.follow')}}
                         </a>
+
+                        {!! Form::open(['method' => 'post', 'route' => ['user.follow', $user->id], 'id' => 'follow']) !!}
+
+                        {!! Form::close() !!}
                     @endif
                 @endif
 
                 <div class="row text-center m-t-20">
                     <div class="col-lg-6 col-md-4 m-t-20">
-                        <h3 class="m-b-0 font-light"></h3><small>@lang('profile.followers')</small>
+                        <a href="{{ route('user.followers', $user->id) }}">
+                            <h3 class="m-b-0 font-light">{{ $user->followers()->count() }}</h3>
+                            <small>@lang('profile.followers')</small>
+                        </a>
                     </div>
                     <div class="col-lg-6 col-md-4 m-t-20">
                         <a href="{{ route('user.following', $user->id) }}">
@@ -117,4 +124,8 @@
         </div>
     @endcan
 </div>
+@endsection
+
+@section('scripts')
+    {{ Html::script( asset('js/follow.js')) }}
 @endsection

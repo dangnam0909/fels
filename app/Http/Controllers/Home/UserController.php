@@ -127,4 +127,47 @@ class UserController extends Controller
 
         return view('users.following', compact('followings'));
     }
+
+    /**
+     * Follow or unfollow the other user.
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function doFollow(Request $request)
+    {
+        try {
+            $user = User::findOrFail($request->id);
+
+            if (Auth::user()->isFollowing($user)) {
+                Auth::user()->unFollowing($user->id);
+            } else {
+                Auth::user()->follow($user->id);
+            }
+
+            return redirect()->back();
+        } catch (ModelNotFoundException $e) {
+            return view('errors.404');
+        }
+    }
+
+    /**
+     * Display the followers list.
+     *
+     * @param string $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function followers($id)
+    {
+        $user = User::query()->where('id', $id)->first();
+
+        if(!isset($user))
+            return view('errors.404');
+
+        $followers = $user->followers()->get();
+
+        return view('users.follower', compact('followers'));
+    }
 }
