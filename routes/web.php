@@ -16,10 +16,7 @@ Route::group([
     'middleware' => ['auth', 'admin'],
     'prefix' => 'admin',
 ], function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
-
+    Route::resource('/dashboard', 'Admin\DashboardController')->only(['index']);
     Route::resource('/topics', 'Admin\TopicController');
 });
 

@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TopicRequest;
-use Illuminate\Support\Facades\Auth;
+use DB;
 
-class TopicController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,12 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = Topic::latest()->paginate(config('setting.topic.number_page'));
-        return view('dashboard.topics.index', compact('topics'));
+        $topics = DB::table('topics')->count();
+        $users = DB::table('users')->count();
+        $words = DB::table('words')->count();
+        $questions = DB::table('questions')->count();
+
+        return view('dashboard.index', compact('topics', 'users', 'words', 'questions'));
     }
 
     /**
@@ -28,36 +30,18 @@ class TopicController extends Controller
      */
     public function create()
     {
-        return view('dashboard.topics.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\TopicRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TopicRequest $request)
+    public function store(Request $request)
     {
-        try {
-
-            $data = [
-                'topic_name' => $request->topic_name,
-                'description' => $request->description,
-                'picture' => Topic::uploadImage('picture'),
-            ];
-
-            $topic = new Topic;
-            $topic->fill($data);
-            $topic->save();
-
-            $userId = Auth::user()->id;
-            $topic->users()->attach($userId);
-            return redirect()->route('topics.index')->with('status', trans('success', ['name' => 'topic']));
-
-        } catch (Exception $e) {
-            return back()->with('errors', trans('error', ['name' => 'topic']));
-        }
+        //
     }
 
     /**

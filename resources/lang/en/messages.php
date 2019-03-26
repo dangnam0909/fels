@@ -48,4 +48,8 @@ return [
     'error' => 'Create a :name failed!',
     'sp_test_name' => 'Test Name',
     'sp_time_test' => 'Time Test',
+    'vocabularies' => 'Vocabularies',
+    'topics' => 'Topics',
+    'users' => 'Users',
+    'questions' => 'Questions',
 ];
