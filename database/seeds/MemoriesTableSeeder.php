@@ -15,8 +15,8 @@ class MemoriesTableSeeder extends Seeder
     {
     	DB::table('memories')->insert([
 	        'user_id' => '1',
-	        'word_id' => '1'
-	        'status' => '0'
+	        'word_id' => '1',
+	        'status' => '0',
 	        'learn_time' => Carbon\Carbon::now(),
 	    ]);
     }

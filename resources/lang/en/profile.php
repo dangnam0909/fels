@@ -17,4 +17,5 @@ return [
     'list_user' => 'List users you follow',
     'update_success' => 'Update successfully!',
     'update_error' => 'Update Failed!',
+    'list_user_follower' => 'List user is followed',
 ];

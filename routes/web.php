@@ -35,6 +35,8 @@ Route::group([
     Route::group(['prefix' => 'user'], function () {
         Route::resource('/profile', 'Home\UserController');
         Route::get('/{id}/following', 'Home\UserController@following')->name('user.following');
+        Route::get('/{id}/follower', 'Home\UserController@followers')->name('user.followers');
+        Route::post('/follow', 'Home\UserController@doFollow')->name('user.follow');
     });
 });
 
