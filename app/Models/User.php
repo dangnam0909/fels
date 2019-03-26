@@ -6,7 +6,6 @@ use App\Models\History;
 use App\Models\Test;
 use App\Models\Word;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Lang;
 use App\Traits\FollowTrait;
 
 class User extends Authenticatable
@@ -23,7 +22,7 @@ class User extends Authenticatable
         'provider_user_id',
         'provider',
         'avatar',
-        'role_id'
+        'role_id',
     ];
 
     protected $hidden = [
@@ -59,6 +58,11 @@ class User extends Authenticatable
     public function isRoleAdmin()
     {
         return $this->role()->where('id', config('setting.role_ad'))->exists();
+    }
+
+    public function results()
+    {
+        return $this->hasMany(Result::class);
     }
 
     public function getAvatarAttribute($value)

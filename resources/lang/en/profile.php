@@ -18,4 +18,9 @@ return [
     'update_success' => 'Update successfully!',
     'update_error' => 'Update Failed!',
     'list_user_follower' => 'List user is followed',
+    'result_test' => 'Results Quiz',
+    'list_results' => 'List result test',
+    'time' => 'Time',
+    'test_name' => 'Test name',
+    'score' => 'Score',
 ];
