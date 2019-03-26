@@ -170,4 +170,23 @@ class UserController extends Controller
 
         return view('users.follower', compact('followers'));
     }
+
+    /**
+     * Display the results list test.
+     *
+     * @param string $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function results($id)
+    {
+        $user = User::query()->where('id', $id)->first();
+
+        if(!isset($user))
+            return view('errors.404');
+
+        $results = $user->results()->get();
+
+        return view('users.results', compact('results'));
+    }
 }

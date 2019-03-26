@@ -37,16 +37,23 @@
                 @endif
 
                 <div class="row text-center m-t-20">
-                    <div class="col-lg-6 col-md-4 m-t-20">
+                    <div class="col-lg-4 col-md-4 m-t-20">
                         <a href="{{ route('user.followers', $user->id) }}">
                             <h3 class="m-b-0 font-light">{{ $user->followers()->count() }}</h3>
                             <small>@lang('profile.followers')</small>
                         </a>
                     </div>
-                    <div class="col-lg-6 col-md-4 m-t-20">
+                    <div class="col-lg-4 col-md-4 m-t-20">
                         <a href="{{ route('user.following', $user->id) }}">
                             <h3 class="m-b-0 font-light">{{ $user->followings()->count() }}</h3>
                             <small>@lang('profile.following')</small>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 m-t-20">
+                        <a href="{{ route('user.results', $user->id) }}">
+                            <h3 class="m-b-0 font-light">{{ $user->results()->count() }}</h3>
+                            <small>@lang('profile.result_test')</small>
                         </a>
                     </div>
                     <div class="col-md-12 m-b-10"></div>

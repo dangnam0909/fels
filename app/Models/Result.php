@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Test;
-use App\Models\word;
+use App\Models\User;
 
 class Result extends Model
 {
@@ -15,9 +15,9 @@ class Result extends Model
         'score',
     ];
 
-    public function word()
+    public function user()
     {
-        return $this->belongsTo(Word::class);
+        return $this->belongsTo(User::class);
     }
 
     public function test()
