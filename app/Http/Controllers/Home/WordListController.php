@@ -22,6 +22,11 @@ class WordListController extends Controller
         return view('words.index', compact('lesson', 'word'));
     }
 
+	public function create()
+	{
+		//
+	}
+
     public function doFavorite(Request $request)
     {
         try {
@@ -46,11 +51,19 @@ class WordListController extends Controller
                 } else {
                     $user->words()->updateExistingPivot($request->id, ['status' => config('setting.true')]);
                 }
-                
+
                 return redirect()->back();
             }
         } catch (Exception $e) {
             return redirect()->back()->with('status', trans('word.add_error'));
         }
+    }
+
+    public function reviewWord()
+    {
+        $user = Auth::user();
+        $words = $user->words()->latest()->paginate(config('setting.word.number_page'));
+
+        return view('words.review', compact('words'));
     }
 }

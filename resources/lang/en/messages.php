@@ -58,4 +58,7 @@ return [
     'sp_notSaveWord' => 'Not Save Word',
     'needLogin' => 'Need Login',
     'view_bug' => 'Error',
+    'review' => 'Review',
+    'word_review' => 'Word Review',
+    'your_vocabulary' => 'Your Vocabulary',
 ];

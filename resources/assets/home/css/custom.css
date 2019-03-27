@@ -18,3 +18,7 @@ img.card-img-left {
 .app-search {
     display: none;
 }
+
+.word {
+    width: 50px;
+}

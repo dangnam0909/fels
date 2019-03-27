@@ -31,7 +31,7 @@
                             <br>
                             <br>
                             <audio controls>
-                                <source src="/uploads/words/audios/{{ $w->sound }}" type="audio/mpeg"/>
+                                <source src="{{ $w->sound }}" type="audio/mpeg"/>
                             </audio>
                             <h3>
                                 <a id="favorite-form" href="{{ route('wordlist.add', $w->id) }}" data-id="{{ $w->id }}" class="badge badge-{{ $w->hasMemories($w->id) ? 'danger' : 'info' }}">{{ $w->hasMemories($w->id) ? 'Memoried' : 'Add Favorite' }}</a>

@@ -30,7 +30,9 @@ Route::group([
     Route::resource('index/word', 'Home\WordListController')->only(['show']);
     Route::get('add/word/{id}', 'Home\WordListController@doFavorite')->name('wordlist.add');
 
-    Route::get('search', 'Home\TopicController@search')->name('topic.search');
+    Route::get('topic/search', 'Home\TopicController@search')->name('topic.search');
+    Route::get('word/review', 'Home\WordListController@reviewWord')->name('word.review');
+
     Route::group(['prefix' => 'user'], function () {
         Route::resource('/profile', 'Home\UserController');
         Route::get('/{id}/following', 'Home\UserController@following')->name('user.following');

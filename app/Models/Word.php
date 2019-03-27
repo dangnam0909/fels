@@ -40,4 +40,9 @@ class Word extends Model
         }
         return false;
     }
+
+    public function getSoundAttribute($value)
+    {
+        return isset($value) ?  \config('setting.audio.path') . $value : config('setting.audio.default');
+    }
 }
