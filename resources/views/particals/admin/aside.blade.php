@@ -2,18 +2,17 @@
     <div class="scroll-sidebar">
         <div class="user-profile" style="background: url(../assets/admin/images/backgrounds/dashboard.jpg) no-repeat;">
             <div class="profile-img">
-                {{ Html::image('/assets/admin/images/users/' . Auth::user()->avatar, Auth::user()->full_name) }}
+                {{ Html::image('/uploads/users/' . Auth::user()->avatar, Auth::user()->full_name) }}
             </div>
         </div>
 
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li>
-                    <a href="{{ route('dashboard') }}" aria-expanded="false"><i class="fa fa-dashboard"></i><span class="hide-menu">@lang('messages.dashboard')</span></a>
+                    <a href="{{ route('dashboard.index') }}" aria-expanded="false"><i class="fa fa-dashboard"></i><span class="hide-menu">@lang('messages.dashboard')</span></a>
                 </li>
                 <li>
                     <a href="{{ route('topics.index') }}" aria-expanded="false"><i class="fa fa-briefcase"></i><span class="hide-menu">@lang('messages.topic')</span></a>
-                    <a href="#" aria-expanded="false"><i class="fa fa-briefcase"></i><span class="  hide-menu">@lang('messages.topic')</span></a>
                 </li>
             </ul>
         </nav>

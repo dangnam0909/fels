@@ -34,7 +34,7 @@
                     <div class="col-md-5 col-8 align-self-center">
                         <h3 class="text-themecolor m-b-0 m-t-0">@lang('messages.dashboard')</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">@lang('messages.home')</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">@lang('messages.home')</a></li>
 
                             @for ($i = 2; $i <= count(Request::segments()); $i++)
                                 @if ($i < count(Request::segments()) & $i > 0)

@@ -23,7 +23,7 @@
             <ul class="navbar-nav my-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ Html::image('/assets/admin/images/users/' . Auth::user()->avatar, Auth::user()->full_name, ['class' => 'profile-pic']) }}
+                        {{ Html::image('/uploads/users/' . Auth::user()->avatar, Auth::user()->full_name, ['class' => 'profile-pic']) }}
 
                     </a>
 
@@ -32,7 +32,7 @@
                             <li>
                                 <div class="dw-user-box">
                                     <div class="u-img">
-                                        {{ Html::image('/assets/admin/images/users/' . Auth::user()->avatar, Auth::user()->full_name) }}
+                                        {{ Html::image('/uploads/users/' . Auth::user()->avatar, Auth::user()->full_name) }}
 
                                     </div>
                                     <div class="u-text">
@@ -42,6 +42,7 @@
                                 </div>
                             </li>
                             <li role="separator" class="divider"></li>
+                            <li><a href="{{ route('index') }}"><i class="fa fa-home"></i>@lang('messages.home')</a></li>
                             <li><a id="logout"><i class="fa fa-power-off"></i>@lang('messages.logout')</a></li>
                             {!! Form::open(['method' => 'post', 'route' => 'logout', 'id' => 'logout-form']) !!}
 
