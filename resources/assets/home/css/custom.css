@@ -14,3 +14,7 @@ img.card-img-left {
     display: flex;
     justify-content: flex-end;
 }
+
+.app-search {
+    display: none;
+}
