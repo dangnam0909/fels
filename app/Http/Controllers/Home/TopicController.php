@@ -93,4 +93,17 @@ class TopicController extends Controller
     {
         //
     }
+
+    public function search(Request $request)
+    {
+        $search = trim($request->input('search'));
+
+        $topics = Topic::query()
+            ->where('topic_name', 'like', "%{$search}%")
+            ->orWhere('description', 'like', "%{$search}%")
+            ->latest()
+            ->get();
+
+        return view('search', compact('topics'));
+    }
 }

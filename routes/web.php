@@ -29,6 +29,7 @@ Route::group([
     Route::resource('/lessons/tests', 'Home\TestController')->only(['show', 'store']);
     Route::resource('showtests', 'Home\ShowTestController');
 
+    Route::get('topic/search', 'Home\TopicController@search')->name('topic.search');
     Route::group(['prefix' => 'user'], function () {
         Route::resource('/profile', 'Home\UserController');
         Route::get('/{id}/following', 'Home\UserController@following')->name('user.following');
