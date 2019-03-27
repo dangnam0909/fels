@@ -52,4 +52,10 @@ return [
     'topics' => 'Topics',
     'users' => 'Users',
     'questions' => 'Questions',
+    'word_remember' => 'Word Remember',
+    'sum_word_remember' => 'Sum Word Remember',
+    'sp_saveWord' => 'Save Word',
+    'sp_notSaveWord' => 'Not Save Word',
+    'needLogin' => 'Need Login',
+    'view_bug' => 'Error',
 ];

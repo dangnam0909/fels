@@ -15,12 +15,12 @@ class Memory extends Model
     	'learn_time',
     ];
 
-    public function words()
+    public function word()
     {
-        return $this->belongsToMany(Word::class);
+        return $this->belongsTo(Word::class);
     }
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

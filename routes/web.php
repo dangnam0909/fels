@@ -25,9 +25,10 @@ Route::group([
 ], function () {
     Route::get('/', 'Home\TopicController@index')->name('index');
     Route::get('/{slug}', 'Home\TopicController@show')->name('topics.show');
-    Route::resource('index/word', 'Home\WordListController');
     Route::resource('/lessons/tests', 'Home\TestController')->only(['show', 'store']);
     Route::resource('showtests', 'Home\ShowTestController');
+    Route::resource('index/word', 'Home\WordListController')->only(['show']);
+    Route::get('add/word/{id}', 'Home\WordListController@doFavorite')->name('wordlist.add');
 
     Route::group(['prefix' => 'user'], function () {
         Route::resource('/profile', 'Home\UserController');

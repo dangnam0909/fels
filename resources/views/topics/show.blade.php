@@ -23,7 +23,7 @@
                             <span class="text-muted pull-right">{{ $lesson->created_at }}</span>
                             <span class="action-icons">
                                 <a href="{{ route('showtests.show', $lesson->id) }}"><i data-toggle="tooltip" data-original-title="{{ trans('messages.test_question') }}" class="ti-pencil-alt"></i></a>
-                                <a href="javascript:void(0)"><i data-toggle="tooltip" data-original-title="{{ trans('messages.results') }}" class="ti-check"></i></a>
+                                <a href="{{ route('word.show', $lesson->id) }}"><i data-toggle="tooltip" data-original-title="{{ trans('word.word') }}" class="ti-check"></i></a>
                             </span>
                         </div>
                     </div>

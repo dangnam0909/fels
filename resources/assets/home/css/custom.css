@@ -5,7 +5,8 @@ img.card-img-left {
 }
 
 .round img {
-    width: 50px;
+    width: 100px;
+    height: 80px;
 }
 
 .fixed {

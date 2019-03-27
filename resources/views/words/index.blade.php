@@ -2,37 +2,51 @@
 @section('title')
     @lang('messages.word_title')
 @endsection
+
 @section('content')
-    <div class="container">
-        <div class="test-list-space">
-            <div class="test-list-title">
-                <h2>@lang('messages.word_title')</h2>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                @foreach($word as $w)
-                    <div class="card">
-                        <div class="card-img-top img-responsive">
-                            {{ Html::image('uploads/words/images/' . $w->picture, 'alt=information', array('class' => 'img-responsive')) }}                        
-                        </div>
-                        <div class="card-title">
-                            <audio controls> 
-                                <source src="uploads/words/audios/{{ $w->sound }}"/>
-                            </audio>
-                            <a href="#">{{ $w->word_name }}</a>
-                            <ul>
-                                <p>
-                                    <span>@lang('messages.sp_spell'): &nbsp;&nbsp;</span><span>{{$w->spelling}}</span></br>
-                                    <span>@lang('messages.sp_trans'): &nbsp;&nbsp;</span><span>{{$w->translate}}</span>
-                                </p>
-                            </ul>
-                        </div>
+
+@if (session('status'))
+    <div class="alert alert-success" role="alert">
+        {{ session('status') }}
+    </div>
+@endif
+
+@include('common.errors')
+
+<div class="row">
+    @forelse($word as $w)
+        <div class="col-md-6 col-lg-6 col-xlg-4">
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col-md-4 col-lg-3 text-center">
+                        <a href="#">
+                            {{ Html::image('uploads/words/images/' . $w->picture, $w->word_name, ['class' => 'img-circle img-responsive']) }}
+
+                        </a>
                     </div>
-                @endforeach
-                <a href="" class="btn btn-success testbtn" >@lang('messages.btn_test')</a>
-            </div>
-            <div class="col-md-8">
-                {{ $word->onEachSide(2)->links('pagination.default') }}
+                    <div class="col-md-8 col-lg-9">
+                        <h3 class="box-title m-b-0">{{ $w->word_name }}</h3> <small>{{ trans('word.web_design') }}</small>
+                        <address>
+                            {{ $w->translate }}
+                            <br>
+                            <br>
+                            <audio controls>
+                                <source src="/uploads/words/audios/{{ $w->sound }}" type="audio/mpeg"/>
+                            </audio>
+                            <h3>
+                                <a id="favorite-form" href="{{ route('wordlist.add', $w->id) }}" data-id="{{ $w->id }}" class="badge badge-{{ $w->hasMemories($w->id) ? 'danger' : 'info' }}">{{ $w->hasMemories($w->id) ? 'Memoried' : 'Add Favorite' }}</a>
+                            </h3>
+                        </address>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    @empty
+        <h2 class="text-center">@lang('messages.nothing')</h2>
+    @endforelse
+</div>
+@endsection
+
+@section('scripts')
+    {{ Html::script(asset('/js/word.js'))}}
 @endsection
