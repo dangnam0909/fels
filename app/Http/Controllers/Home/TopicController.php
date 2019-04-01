@@ -4,12 +4,22 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Topic;
-use App\Models\Lesson;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Repositories\TopicRepository;
+use App\Repositories\LessonRepository;
 
 class TopicController extends Controller
 {
+    protected $topic;
+
+    protected $lesson;
+
+    public function __construct(TopicRepository $topic, LessonRepository $lesson)
+    {
+        $this->topic = $topic;
+        $this->lesson = $lesson;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +27,8 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = Topic::withCount('lessons')->get();
-        return view('home', compact('topics'));
+        $topics = $this->topic->withCount('lessons');
+        return view('topics.index', compact('topics'));
     }
 
     /**
@@ -51,8 +61,8 @@ class TopicController extends Controller
     public function show($slug)
     {
         try {
-            $topic = Topic::where('slug', $slug)->firstOrFail();
-            $lessons = Lesson::where('topic_id', $topic->id)->get();
+            $topic = $this->topic->findBy('slug', $slug);
+            $lessons = $this->lesson->findWhere('topic_id', $topic->id);
 
             return view('topics.show', compact('lessons'));
         } catch (ModelNotFoundException $e) {
@@ -97,12 +107,7 @@ class TopicController extends Controller
     public function search(Request $request)
     {
         $search = trim($request->input('search'));
-
-        $topics = Topic::query()
-            ->where('topic_name', 'like', "%{$search}%")
-            ->orWhere('description', 'like', "%{$search}%")
-            ->latest()
-            ->get();
+        $topics = $this->topic->search(['topic_name', 'description'], $search);
 
         return view('search', compact('topics'));
     }
