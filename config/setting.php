@@ -12,7 +12,10 @@ return [
     'question_number' => 10,
     'male' => 1,
     'female' => 0,
-    'default_avatar' => 'default.jpg',
+    'avatar' => [
+        'path' => '/uploads/users/',
+        'default' => 'default.jpg',
+    ],
     'true' => 1,
     'false' => 0,
     'audio' => [

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Notifications\FollowedUser;
 
 class UserController extends Controller
 {
@@ -140,10 +141,11 @@ class UserController extends Controller
         try {
             $user = User::findOrFail($request->id);
 
-            if (Auth::user()->isFollowing($user)) {
-                Auth::user()->unFollowing($user->id);
+            if (\Auth::user()->isFollowing($user)) {
+                \Auth::user()->unFollowing($user->id);
             } else {
-                Auth::user()->follow($user->id);
+                \Auth::user()->follow($user->id);
+                $user->notify(new FollowedUser(\Auth::user()));
             }
 
             return redirect()->back();

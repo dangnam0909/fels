@@ -16,7 +16,7 @@
 
             <div class="card-body little-profile text-center">
                 <div class="pro-img">
-                    {{ Html::image('/uploads/users/' . $user->avatar, $user->full_name) }}
+                    {{ Html::image($user->avatar, $user->full_name) }}
 
                 </div>
                 <h3 class="m-b-0">{{ $user->full_name }}</h3>

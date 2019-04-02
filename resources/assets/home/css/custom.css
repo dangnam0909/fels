@@ -22,3 +22,7 @@ img.card-img-left {
 .word {
     width: 50px;
 }
+
+.unread-notification {
+    background: #f2f4f8;
+}

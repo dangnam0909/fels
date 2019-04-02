@@ -13,7 +13,7 @@
                         @forelse ($followers as $follower)
                             <a href="{{ route('profile.show', $follower->id) }}">
                                 <div class="user-img">
-                                    {{ Html::image('/uploads/users/' . $follower->avatar, $follower->full_name, ['class' => 'img-circle']) }}
+                                    {{ Html::image($follower->avatar, $follower->full_name, ['class' => 'img-circle']) }}
                                     <span class="profile-status online pull-right"></span>
                                 </div>
                                 <div class="mail-contnet">

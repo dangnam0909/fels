@@ -33,15 +33,39 @@
                 @if (Route::has('login'))
                     @auth
                         <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-bell-ring"></i>
+                                <div class="notify">
+                                    @if (Auth::user()->unreadNotifications->count() > 0)
+                                        <span class="heartbit"></span><span class="point"></span>
+                                    @endif
+                                </div>
+                            </a>
+                            <div class="dropdown-menu mailbox dropdown-menu-right scale-up" aria-labelledby="2">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">@lang('profile.has_notification', ['number' => Auth::user()->unreadNotifications->count()])</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            @include('notifications.followed_user')
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>@lang('profile.all_notification')</strong> <i class="fa fa-angle-right"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ Html::image('/uploads/users/' . Auth::user()->avatar, Auth::user()->full_name, ['class' => 'profile-pic']) }}
+                                {{ Html::image(Auth::user()->avatar, Auth::user()->full_name, ['class' => 'profile-pic']) }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right scale-up">
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
                                             <div class="u-img">
-                                                {{ Html::image('/uploads/users/' . Auth::user()->avatar, Auth::user()->full_name) }}
+                                                {{ Html::image(Auth::user()->avatar, Auth::user()->full_name) }}
 
                                             </div>
                                             <div class="u-text">
