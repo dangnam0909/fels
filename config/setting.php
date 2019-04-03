@@ -15,4 +15,8 @@ return [
     'default_avatar' => 'default.jpg',
     'true' => 1,
     'false' => 0,
+    'audio' => [
+        'path' => '/uploads/words/audios/',
+        'default' => '/uploads/words/audios/default.mp3',
+    ],
 ];
