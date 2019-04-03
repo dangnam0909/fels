@@ -7,10 +7,11 @@ use App\Models\Test;
 use App\Models\Word;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Traits\FollowTrait;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use FollowTrait;
+    use FollowTrait, Notifiable;
 
     protected $fillable = [
         'full_name',
@@ -69,6 +70,6 @@ class User extends Authenticatable
 
     public function getAvatarAttribute($value)
     {
-        return isset($value) ? $value : config('setting.default_avatar');
+        return isset($value) ? config('setting.avatar.path') . $value : config('setting.avatar.default');
     }
 }

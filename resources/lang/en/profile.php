@@ -23,4 +23,11 @@ return [
     'time' => 'Time',
     'test_name' => 'Test name',
     'score' => 'Score',
+    'followed_content' => ':user followed you',
+    'some_followed' => 'Someone Followed',
+    'has_notification' => 'You have :number new notification!',
+    'no_notification' => 'You have not notification!',
+    'view' => 'View',
+    'dear' => 'Dear',
+    'all_notification' => 'See all Notification',
 ];

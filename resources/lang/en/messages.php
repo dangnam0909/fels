@@ -61,4 +61,5 @@ return [
     'review' => 'Review',
     'word_review' => 'Word Review',
     'your_vocabulary' => 'Your Vocabulary',
+    'thanks' => 'Thanks',
 ];
