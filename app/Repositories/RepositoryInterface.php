@@ -13,4 +13,6 @@ interface RepositoryInterface
     public function findWhere($attribute, $value, $columns = ['*']);
 
     public function search($attribute = [], $search);
+
+    public function getById($id);
 }
