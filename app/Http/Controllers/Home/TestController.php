@@ -10,9 +10,16 @@ use DB;
 use Auth;
 use App\Models\Result;
 use Carbon\Carbon;
+use App\Repositories\TestRepository;
 
 class TestController extends Controller
 {
+    protected $test;
+
+    public function __construct(TestRepository $test)
+    {
+        $this->test = $test;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -58,13 +65,13 @@ class TestController extends Controller
         }
 
         $result = Result::create([
-            'finish_time' => Carbon::now()->format('H:m:i'),
+            'finish_time' => Carbon::now()->toTimeString(),
             'user_id' => Auth::user()->id,
             'test_id'=> $test->id,
             'score' => $score,
         ]);
 
-        return view('tests.result', compact('result', 'test'));
+        return redirect()->route('result.show', $result->id);
     }
 
     /**
@@ -76,8 +83,8 @@ class TestController extends Controller
     public function show($id)
     {
         try {
-            $test  = Test::findOrFail($id);
-            $questions = $test->questions()->inRandomOrder()->limit(config('setting.question_number'))->get();
+            $test  = $this->test->getById($id);
+            $questions = $this->test->randomOrder($test, config('setting.question_number'));
 
             return view('tests.show', compact('questions', 'test'));
         } catch (ModelNotFoundException $e) {

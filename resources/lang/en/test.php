@@ -5,4 +5,5 @@ return [
     'result_details' => 'Result Details',
     'finish_time' => 'Finish time',
     'test_again' => 'Test Again!',
+    'want_submit' => 'Are you sure that you want to submit the test ?',
 ];

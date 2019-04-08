@@ -61,4 +61,9 @@ abstract class BaseRepository implements RepositoryInterface
             ->latest()
             ->get();
     }
+
+    public function getById($id)
+    {
+        return $this->model->findOrFail($id);
+    }
 }
