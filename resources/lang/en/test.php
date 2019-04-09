@@ -6,4 +6,6 @@ return [
     'finish_time' => 'Finish time',
     'test_again' => 'Test Again!',
     'want_submit' => 'Are you sure that you want to submit the test ?',
+    'subject' => 'Make a Quiz Test!',
+    'make_test' => 'Make Test',
 ];

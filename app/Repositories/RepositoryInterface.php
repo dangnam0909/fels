@@ -15,4 +15,6 @@ interface RepositoryInterface
     public function search($attribute = [], $search);
 
     public function getById($id);
+
+    public function orderByRaw($query, $value);
 }

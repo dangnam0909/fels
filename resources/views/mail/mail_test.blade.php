@@ -1,10 +1,12 @@
 @component('mail::message')
-**@lang('profile.dear') {{ $full_name }},**
+**{{ $test_name }}**
+<br>
+@lang('profile.dear') {{ $full_name }},
 
-{{ $messages }}
+@lang('messages.suggest_test')
 
 @component('mail::button', ['url' => $url])
-@lang('profile.view')
+@lang('test.make_test')
 @endcomponent
 @lang('messages.thanks'), <br>
 {{ config('app.name') }}
