@@ -22,4 +22,5 @@ return [
         'path' => '/uploads/words/audios/',
         'default' => '/uploads/words/audios/default.mp3',
     ],
+    'limit' => 1,
 ];

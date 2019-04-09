@@ -35,7 +35,6 @@ return [
     'list_word_followed' => 'List of vocabulary being tracked',
     'word_title' => 'List of vocabulary',
     'btn_test' => 'Test word',
-    'error' => 'Create a :name failed!',
     'public' => 'Public',
     'test_question' => 'Test Question',
     'results' => 'Results',
@@ -45,7 +44,6 @@ return [
     'back' => 'Back to home',
     'try_find_home' => 'YOU SEEM TO BE TRYING TO FIND HIS WAY HOME',
     'finish' => 'Finish Quiz',
-    'error' => 'Create a :name failed!',
     'sp_test_name' => 'Test Name',
     'sp_time_test' => 'Time Test',
     'vocabularies' => 'Vocabularies',
@@ -62,4 +60,6 @@ return [
     'word_review' => 'Word Review',
     'your_vocabulary' => 'Your Vocabulary',
     'thanks' => 'Thanks',
+    'test_sent_user' => 'Test sent to All Users',
+    'suggest_test' => 'Every Friday, you will make to do a test',
 ];

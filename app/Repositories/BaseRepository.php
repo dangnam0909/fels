@@ -66,4 +66,9 @@ abstract class BaseRepository implements RepositoryInterface
     {
         return $this->model->findOrFail($id);
     }
+
+    public function orderByRaw($query, $value)
+    {
+        return $this->model->orderByRaw($query)->take($value)->get();
+    }
 }
