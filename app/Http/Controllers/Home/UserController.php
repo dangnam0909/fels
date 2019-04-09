@@ -5,12 +5,18 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Notifications\FollowedUser;
+use App\Repositories\UserRepository;
 
 class UserController extends Controller
 {
+    protected $user;
+
+    public function __construct(UserRepository $user)
+    {
+        $this->user = $user;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -57,7 +63,7 @@ class UserController extends Controller
     public function show($id)
     {
         try {
-            $user = User::where('id', $id)->firstOrFail();
+            $user = $this->user->findBy('id', $id);
 
             return view('users.profile', compact('user'));
         } catch (ModelNotFoundException $e) {
@@ -88,9 +94,9 @@ class UserController extends Controller
     {
         try {
             $input = $request->except(['email', 'role_id']);
-            $user = User::query()->findOrFail($id);
+            $user = $this->user->getById($id);
             $this->authorize('update', $user);
-            $user->update($input);
+            $this->user->update($user->id, $input);
 
             return redirect()->back()->with('status', trans('profile.update_success'));
         } catch (ModelNotFoundException $e) {
@@ -119,7 +125,7 @@ class UserController extends Controller
      */
     public function following($id)
     {
-        $user = User::query()->where('id', $id)->first();
+        $user = $this->user->findBy('id', $id);
 
         if(!isset($user))
             return view('errors.404');
@@ -139,7 +145,7 @@ class UserController extends Controller
     public function doFollow(Request $request)
     {
         try {
-            $user = User::findOrFail($request->id);
+            $user = $this->user->getById($request->id);
 
             if (\Auth::user()->isFollowing($user)) {
                 \Auth::user()->unFollowing($user->id);
@@ -163,7 +169,7 @@ class UserController extends Controller
      */
     public function followers($id)
     {
-        $user = User::query()->where('id', $id)->first();
+        $user = $this->user->findBy('id', $id);
 
         if(!isset($user))
             return view('errors.404');
@@ -182,7 +188,7 @@ class UserController extends Controller
      */
     public function results($id)
     {
-        $user = User::query()->where('id', $id)->first();
+        $user = $this->user->findBy('id', $id);
 
         if(!isset($user))
             return view('errors.404');

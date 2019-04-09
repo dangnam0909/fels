@@ -71,4 +71,31 @@ abstract class BaseRepository implements RepositoryInterface
     {
         return $this->model->orderByRaw($query)->take($value)->get();
     }
+
+    public function find($id, $columns = ['*'])
+    {
+        return $this->model->find($id, $columns);
+    }
+
+    public function create($data = [])
+    {
+        return $this->model->create($data);
+    }
+
+    public function findWhereIn($field, $value, $columns = ['*'])
+    {
+        return $this->model->whereIn($field, $value)->get($columns);
+    }
+
+    public function update($id, $data = [])
+    {
+        $result = $this->find($id);
+        if ($result)
+        {
+            $result->update($data);
+            return $result;
+        }
+
+        return false;
+    }
 }
