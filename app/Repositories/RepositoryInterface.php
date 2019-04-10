@@ -17,4 +17,12 @@ interface RepositoryInterface
     public function getById($id);
 
     public function orderByRaw($query, $value);
+
+    public function find($id, $columns = array('*'));
+
+    public function create($data = []);
+
+    public function findWhereIn($field, $value, $columns = ['*']);
+
+    public function update($id, $data = []);
 }

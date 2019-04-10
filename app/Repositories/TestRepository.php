@@ -16,4 +16,23 @@ class TestRepository extends BaseRepository
     {
         return $test->questions()->inRandomOrder()->limit($value)->get();
     }
+
+    public function calculateScore($questions, $option, $request)
+    {
+        $score = 0;
+        $options = [];
+
+        foreach ($questions as $key => $question)
+        {
+            $options[$key] = $request->input('answers.'. $question) != null ? $request->input('answers.'. $question) : null;
+        }
+
+        $results = $option->findWhereIn('id', $options);
+        foreach ($results as $result)
+        {
+            $score = $result->is_correct == 1 ? $score + 1 : $score;
+        }
+
+        return $score;
+    }
 }
