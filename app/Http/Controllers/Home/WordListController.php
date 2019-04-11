@@ -32,7 +32,7 @@ class WordListController extends Controller
         try {
             $user = Auth::user();
             $word_id = DB::table('memories')
-                ->whereWordId($request->id)
+                ->/* whereWordId */($request->id)
                 ->whereUserId($user->id)
                 ->exists();
 

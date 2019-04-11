@@ -7,7 +7,6 @@
                     {{ Html::image('/assets/home/images/logos/logo-icon.png', 'home page', ['class' => 'dark-logo']) }}
                     {{ Html::image('/assets/home/images/logos/logo-light-icon.png', 'home page', ['class' => 'light-logo']) }}
                 </b>
-
                 <span>
                     <h3 class="light-logo">@lang('messages.logo')</h3>
                 </span>

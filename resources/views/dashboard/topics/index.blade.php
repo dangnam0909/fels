@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', __('messages.topic'))
+@section('title', ('messages.topic'))
 
 @section('content')
     <h4 class="card-title">@lang('topic.list_topic')</h4>
@@ -60,7 +60,6 @@
     </div>
     <div class="row m-t-30">
         <div class="col-md-4">
-
         </div>
         <div class="col-md-8">
             {{ $topics->onEachSide(2)->links('pagination.default') }}
