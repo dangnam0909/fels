@@ -20,6 +20,8 @@ Route::group([
     Route::resource('/topics', 'Admin\TopicController');
 });
 
+Route::get('user/activation/{token}', 'Auth\RegisterController@activateUser')->name('user.activate');
+
 Route::group([
     'middleware' => ['auth'],
 ], function () {

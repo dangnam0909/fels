@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Jobs\SendWelcomeEmail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
+use App\Classes\ActivationService;
 
 class RegisterController extends Controller
 {
@@ -28,16 +33,19 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/login';
+
+    protected $activationService;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ActivationService $activationService)
     {
         $this->middleware('guest');
+        $this->activationService = $activationService;
     }
 
     /**
@@ -69,5 +77,36 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'role_id' => 0,
         ]);
+    }
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        
+        //event(new Registered($user = $this->create($request->all())));
+        //$this->guard()->login($user);
+        //return $this->registered($request, $user)?: redirect($this->redirectPath());
+
+        $user = $this->create($request->all());
+        event(new Registered($user));
+        //$this->guard()->login($user);
+
+        $this->activationService->sendActivationMail($user);
+        
+        return redirect('/login')->with('status', 'Bạn hãy kiểm tra email và thực hiện xác thực theo hướng dẫn.');
+    }
+
+    public function activateUser($token)
+    {
+        if ($user = $this->activationService->activateUser($token)) {
+            auth()->login($user);
+            return redirect('/login');
+        }
+        abort(404);
     }
 }
